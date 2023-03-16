@@ -12,8 +12,6 @@ export class Customer {
     public billingAddress: Address,
     public shippingAddress: Address,
     public creditCard: CreditCard,
-    public password: string,
     public user: User,
-    public active: boolean,
   ) {}
 }
