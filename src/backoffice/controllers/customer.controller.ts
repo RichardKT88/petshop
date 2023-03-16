@@ -6,7 +6,10 @@ import {
   Param,
   Post,
   Put,
+  UseInterceptors,
 } from '@nestjs/common';
+import { ValidatorInterceptor } from 'src/interceptors/validator.interceptor';
+import { CreateCustomerContract } from '../contracts/customer.contract';
 import { Customer } from '../models/customer.model';
 import { Result } from '../models/result.model';
 // localhost:3000/v1/customers
@@ -21,6 +24,7 @@ export class CustomerController {
     return new Result(null, true, {}, null);
   }
   @Post()
+  @UseInterceptors(new ValidatorInterceptor(new CreateCustomerContract()))
   post(@Body() body: Customer) {
     return new Result('Cliente criado com sucesso', true, body, null);
   }
